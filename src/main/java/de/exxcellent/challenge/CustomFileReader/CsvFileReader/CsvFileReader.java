@@ -1,9 +1,11 @@
-package de.exxcellent.challenge.CsvFileReader;
+package de.exxcellent.challenge.CustomFileReader.CsvFileReader;
 
 import java.io.*;
 import java.util.*;
 
-public abstract class CsvFileReader<T> {
+import de.exxcellent.challenge.CustomFileReader.CustomFileReader;
+
+public abstract class CsvFileReader<T> implements CustomFileReader<T> {
 
     public final String filePath;
 
@@ -11,6 +13,7 @@ public abstract class CsvFileReader<T> {
         this.filePath = filePath;
     }
 
+    @Override
     public ArrayList<T> parseFile() {
         ArrayList<T> parsedContent = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {

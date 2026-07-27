@@ -1,4 +1,4 @@
-package de.exxcellent.challenge.CsvFileReader;
+package de.exxcellent.challenge.CustomFileReader.CsvFileReader;
 
 public class InvalidLineException extends RuntimeException {
 

@@ -1,6 +1,6 @@
 package de.exxcellent.challenge.Weather;
 
-import de.exxcellent.challenge.CsvFileReader.CsvFileReader;
+import de.exxcellent.challenge.CustomFileReader.CsvFileReader.CsvFileReader;
 
 public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
 
