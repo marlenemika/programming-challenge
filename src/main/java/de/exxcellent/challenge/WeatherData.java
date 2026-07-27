@@ -28,6 +28,10 @@ public class WeatherData {
         return minTemp;
     }
 
+    public int getTempSpread() {
+        return Math.abs(maxTemp - minTemp);
+    }
+
     @Override
     public String toString() {
         return String.format("Day: %d, maxTemp: %d, minTemp: %d", day, maxTemp, minTemp);
