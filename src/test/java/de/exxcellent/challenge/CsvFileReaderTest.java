@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 public class CsvFileReaderTest {
 
     final String TEST_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/testFile.csv";
+    final String EMPTY_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/emptyFile.csv";
+    final String NON_EXISTING_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/faultyFile.csv";
 
     @Test
     void readsFileContentCorrectly() {
@@ -24,18 +26,14 @@ public class CsvFileReaderTest {
 
     @Test
     void readsEmptyFile() {
-        String emptyFilePath = "src/test/java/de/exxcellent/challenge/resources/emptyFile.csv";
-
-        CsvFileReader reader = new CsvFileReader(emptyFilePath);
+        CsvFileReader reader = new CsvFileReader(EMPTY_FILE_PATH);
 
         assertTrue(reader.parseFile().isEmpty());
     }
 
     @Test
-    void returnsEmptyListForInvalidFile() {
-        String faultyFilePath = "src/test/java/de/exxcellent/challenge/faultyFile.csv";
-
-        CsvFileReader reader = new CsvFileReader(faultyFilePath);
+    void returnsEmptyListForNonExistingFile() {
+        CsvFileReader reader = new CsvFileReader(NON_EXISTING_FILE_PATH);
 
         assertTrue(reader.parseFile().isEmpty());
     }
