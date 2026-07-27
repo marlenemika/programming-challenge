@@ -12,10 +12,10 @@ public class WeatherCsvFileReaderTest {
 
     final String SHARED_PATH = "src/test/java/de/exxcellent/challenge/resources/";
 
-    final String TEST_FILE_PATH = SHARED_PATH + "testFile.csv";
+    final String TEST_FILE_PATH = SHARED_PATH + "testFileWeather.csv";
     final String EMPTY_FILE_PATH = SHARED_PATH + "emptyFile.csv";
     final String NON_EXISTING_FILE_PATH = SHARED_PATH + "faultyFile.csv";
-    final String INVALID_TEST_FILE_PATH = SHARED_PATH + "invalidTestFile.csv";
+    final String INVALID_TEST_FILE_PATH = SHARED_PATH + "invalidTestFileWeather.csv";
 
     @Test
     void readsFileContentCorrectly() {
