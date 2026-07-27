@@ -1,6 +1,6 @@
 package de.exxcellent.challenge.CustomFileReader;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Interface for different file readers that each supports a different file format
@@ -12,6 +12,12 @@ import java.util.List;
  */
 public interface CustomFileReader<T> {
 
-    public List<T> parseFile() throws Exception;
+    /**
+     * Reads the file passed and converts its content to a list of objects of type T
+     * 
+     * @return a list of parsed objects of type T
+     * @throws Exception if the file cannot be read or its content is invalid
+     */
+    public ArrayList<T> parseFile() throws Exception;
     
 }

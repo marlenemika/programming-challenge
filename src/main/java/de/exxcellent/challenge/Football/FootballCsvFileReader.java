@@ -2,12 +2,25 @@ package de.exxcellent.challenge.Football;
 
 import de.exxcellent.challenge.CustomFileReader.CsvFileReader.CsvFileReader;
 
+/**
+ * Concrete implementation for reading football.csv file and
+ * parsing it into a list of FootballData objects
+ * 
+ * FootballCsvFileReader
+ */
 public class FootballCsvFileReader extends CsvFileReader<FootballData> {
 
     public FootballCsvFileReader(String filePath) {
         super(filePath);
     }
 
+
+    /**
+     * Splits line on commas and creates an FootballData object with the data in it
+     * 
+     * @param line the line containing the data which should be parsed into an object
+     * @return FootballData object containing the information as stored in line
+     */
     @Override
     protected FootballData parseLineToDataObject(String line) {
         String[] lineContent = line.split(",|\\n");

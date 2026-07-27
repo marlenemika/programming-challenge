@@ -28,6 +28,9 @@ public class WeatherData {
         return minTemp;
     }
 
+    /**
+     * @return the absolute difference between maxTemp and minTemp
+     */
     public int getTempSpread() {
         return Math.abs(maxTemp - minTemp);
     }

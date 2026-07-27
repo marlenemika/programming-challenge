@@ -2,7 +2,12 @@ package de.exxcellent.challenge.Weather;
 
 import java.util.*;
 
-
+/**
+ * Takes a list of WeatherData objects and analyzes it for insights
+ * Can be extended for several use cases (e.g. get maxTempSpread across all objects)
+ * 
+ * WeatherDataAnalyzer
+ */
 public class WeatherDataAnalyzer {
 
     private final String FILE_PATH;
@@ -11,6 +16,11 @@ public class WeatherDataAnalyzer {
         this.FILE_PATH = filePath;
     }
 
+    /**
+     * Analyzes the data for insights (i.e. smallest temperature spread across all entries)
+     * 
+     * @throws NoSuchElementException if no WeatherData objects exist
+     */
     public void run() {
         WeatherCsvFileReader reader = new WeatherCsvFileReader(FILE_PATH);
 

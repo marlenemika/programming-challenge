@@ -29,6 +29,9 @@ public class FootballData {
         return goalsAllowed;
     }
 
+    /**
+     * @return the absolute difference between goalsScored and goalsAllowed
+     */
     public int getGoalsDifference() {
         return Math.abs(goalsScored - goalsAllowed);
     }

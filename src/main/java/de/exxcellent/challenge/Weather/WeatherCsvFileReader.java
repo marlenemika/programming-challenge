@@ -2,12 +2,24 @@ package de.exxcellent.challenge.Weather;
 
 import de.exxcellent.challenge.CustomFileReader.CsvFileReader.CsvFileReader;
 
+/**
+ * Concrete implementation for reading weather.csv file and
+ * parsing it into a list of WeatherData objects
+ * 
+ * WeatherCsvFileReader
+ */
 public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
 
     public WeatherCsvFileReader(String filePath) {
         super(filePath);
     }
 
+    /**
+     * Splits line on commas and creates an WeatherData object with the data in it
+     * 
+     * @param line the line containing the data which should be parsed into an object
+     * @return WeatherData object containing the information as stored in line
+     */
     @Override
     protected WeatherData parseLineToDataObject(String line) {
         String[] lineContent = line.split(",|\\n");
