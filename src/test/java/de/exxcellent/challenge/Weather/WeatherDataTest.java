@@ -17,7 +17,7 @@ public class WeatherDataTest {
 
     @Test
     void createsCorrectObjectFromListConstructor() {
-        String [] values = new String[]{
+        String[] values = new String[]{
             "1", "20", "15"
         };
 
@@ -26,5 +26,12 @@ public class WeatherDataTest {
         assertEquals(1, data.getDay());
         assertEquals(20, data.getMaxTemp());
         assertEquals(15, data.getMinTemp());
+    }
+
+    @Test
+    void calculatesCorrectTempSpread() {
+        WeatherData data = new WeatherData(1, 25, 10);
+
+        assertEquals(15, data.getTempSpread());
     }
 }
