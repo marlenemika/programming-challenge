@@ -2,7 +2,7 @@ package de.exxcellent.challenge;
 
 public class WeatherData {
 
-    public int day, maxTemp, minTemp;
+    private int day, maxTemp, minTemp;
 
     public WeatherData(int day, int maxTemp, int minTemp) {
         this.day = day;
@@ -14,6 +14,18 @@ public class WeatherData {
         this.day = Integer.parseInt(contents[0]);
         this.maxTemp = Integer.parseInt(contents[1]);
         this.minTemp = Integer.parseInt(contents[2]);
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getMaxTemp() {
+        return maxTemp;
+    }
+
+    public int getMinTemp() {
+        return minTemp;
     }
 
     public String toString() {
