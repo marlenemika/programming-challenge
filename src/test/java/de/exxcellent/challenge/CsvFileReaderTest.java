@@ -1,7 +1,6 @@
 package de.exxcellent.challenge;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
@@ -9,9 +8,12 @@ import org.junit.jupiter.api.Test;
 
 public class CsvFileReaderTest {
 
-    final String TEST_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/testFile.csv";
-    final String EMPTY_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/emptyFile.csv";
-    final String NON_EXISTING_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/faultyFile.csv";
+    final String SHARED_PATH = "src/test/java/de/exxcellent/challenge/resources/";
+
+    final String TEST_FILE_PATH = SHARED_PATH + "testFile.csv";
+    final String EMPTY_FILE_PATH = SHARED_PATH + "emptyFile.csv";
+    final String NON_EXISTING_FILE_PATH = SHARED_PATH + "faultyFile.csv";
+    final String INVALID_TEST_FILE_PATH = SHARED_PATH + "invalidTestFile.csv";
 
     @Test
     void readsFileContentCorrectly() {
@@ -54,5 +56,16 @@ public class CsvFileReaderTest {
         ArrayList<WeatherData> result = reader.parseFile();
 
         assertEquals(2, result.size());
+    }
+
+    @Test
+    void throwsExceptionForInvalidLine() {
+        CsvFileReader reader = new CsvFileReader(INVALID_TEST_FILE_PATH);
+
+        InvalidLineException exception = assertThrows(
+            InvalidLineException.class, () -> reader.parseFile()
+        );
+
+        assertEquals("Invalid line: 1,20,15", exception.getMessage());
     }
 }
