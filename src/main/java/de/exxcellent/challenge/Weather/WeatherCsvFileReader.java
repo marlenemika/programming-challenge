@@ -1,38 +1,15 @@
 package de.exxcellent.challenge.Weather;
 
-import java.io.*;
-import java.util.*;
+import de.exxcellent.challenge.CsvFileReader.CsvFileReader;
 
-import de.exxcellent.challenge.CsvFileReader.InvalidLineException;
-
-public class WeatherCsvFileReader {
-
-    public String filePath;
+public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
 
     public WeatherCsvFileReader(String filePath) {
-        this.filePath = filePath;
+        super(filePath);
     }
 
-    public ArrayList<WeatherData> parseFile() throws InvalidLineException {
-        ArrayList<WeatherData> parsedContent = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (isValidLine(line))
-                    parsedContent.add(parseLineToWeatherData(line));
-                else if (isValidHeader(line)) 
-                    continue;
-                else 
-                    throw new InvalidLineException("Invalid line: " + line);
-            }
-        } catch (IOException e) {
-            System.err.println("An error occurred:" + e);
-            e.printStackTrace();
-        }
-        return parsedContent;
-    }
-
-    private WeatherData parseLineToWeatherData(String line) {
+    @Override
+    protected WeatherData parseLineToDataObject(String line) {
         String[] lineContent = line.split(",|\\n");
         return new WeatherData(lineContent);
     }
@@ -43,7 +20,8 @@ public class WeatherCsvFileReader {
      * @param line the line to be checked
      * @return true if the line contains all column names required, else false
      */
-    private boolean isValidHeader(String line) {
+    @Override
+    protected boolean isValidHeader(String line) {
         boolean containsNeededArguments = true;
         String[] minArguments = new String[] {"Day", "MxT", "MnT"};
         for (String argument : minArguments) {
@@ -60,7 +38,8 @@ public class WeatherCsvFileReader {
      * @param line the line to be checked
      * @return true if the line contains 14 values following that pattern
      */
-    private boolean isValidLine(String line) {
+    @Override
+    protected boolean isValidLine(String line) {
         return line.matches("(?:\\d+(?:\\.\\d+)?,){13}\\d+(?:\\.\\d+)?");
     }
 
