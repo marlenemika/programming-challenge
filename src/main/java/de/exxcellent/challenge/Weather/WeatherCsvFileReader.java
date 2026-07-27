@@ -23,7 +23,7 @@ public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
     @Override
     protected boolean isValidHeader(String line) {
         boolean containsNeededArguments = true;
-        String[] minArguments = new String[] {"Day", "MxT", "MnT"};
+        String[] minArguments = new String[]{"Day", "MxT", "MnT"};
         for (String argument : minArguments) {
             containsNeededArguments = containsNeededArguments && line.contains(argument);
         }
