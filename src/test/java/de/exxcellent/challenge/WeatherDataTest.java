@@ -18,13 +18,13 @@ public class WeatherDataTest {
     @Test
     void createsCorrectObjectFromListConstructor() {
         String [] values = new String[]{
-            "1", "15", "20"
+            "1", "20", "15"
         };
 
         WeatherData data = new WeatherData(values);
 
         assertEquals(1, data.getDay());
-        assertEquals(15, data.getMaxTemp());
-        assertEquals(20, data.getMinTemp());
+        assertEquals(20, data.getMaxTemp());
+        assertEquals(15, data.getMinTemp());
     }
 }

@@ -18,8 +18,8 @@ public class CsvFileReaderTest {
         CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
 
         ArrayList<WeatherData> testFileContent = new ArrayList<>();
-        testFileContent.add(new WeatherData(1, 15, 20));
-        testFileContent.add(new WeatherData(2, 14, 18));
+        testFileContent.add(new WeatherData(1, 20, 15));
+        testFileContent.add(new WeatherData(2, 18, 14));
 
         assertEquals(testFileContent, reader.parseFile());
     }
