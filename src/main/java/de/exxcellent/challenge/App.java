@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.Football.FootballDataAnalyzer;
 import de.exxcellent.challenge.Weather.WeatherDataAnalyzer;
 
 /**
@@ -11,19 +12,19 @@ import de.exxcellent.challenge.Weather.WeatherDataAnalyzer;
 public final class App {
 
     final static String WEATHER_FILE_PATH = "src/main/resources/de/exxcellent/challenge/weather.csv";
+    final static String FOOTBALL_FILE_PATH = "src/main/resources/de/exxcellent/challenge/football.csv";
 
     /**
      * This is the main entry method of your program.
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
-        WeatherDataAnalyzer dataAnalyzer = new WeatherDataAnalyzer(WEATHER_FILE_PATH);
+        WeatherDataAnalyzer weatherDataAnalyzer = new WeatherDataAnalyzer(WEATHER_FILE_PATH);
         System.out.print("Day with smallest temperature spread: ");
-        dataAnalyzer.run();
+        weatherDataAnalyzer.run();
 
-        /*
-        String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
-        */
+        FootballDataAnalyzer footballDataAnalyzer = new FootballDataAnalyzer(FOOTBALL_FILE_PATH);
+        System.out.printf("Team with smallest goal spread: ");
+        footballDataAnalyzer.run();
     }
 }
