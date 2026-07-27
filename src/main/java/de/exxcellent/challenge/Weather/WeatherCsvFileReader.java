@@ -54,7 +54,22 @@ public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
      */
     @Override
     protected boolean isValidLine(String line) {
-        return line.matches("(?:\\d+(?:\\.\\d+)?,){13}\\d+(?:\\.\\d+)?");
+        String day = "\\d+";
+        // Positive integer or decimal number
+        String positiveNumber = "\\d+(?:\\.\\d+)?";
+        // Negative integer or decimal number
+        String negativeNumber = "-" + positiveNumber;
+
+        // Temperatures may be below zero
+        String temperatureFields = "(?:(?:" + positiveNumber + "|" + negativeNumber + "),){4}";
+
+        // Remaining fields are never below zero
+        String remainingFields = "(?:" + positiveNumber + ",){8}";
+
+        // Compose pattern according to csv file layout
+        String pattern = day + "," + temperatureFields + remainingFields + positiveNumber;
+
+        return line.matches(pattern);
     }
 
 }

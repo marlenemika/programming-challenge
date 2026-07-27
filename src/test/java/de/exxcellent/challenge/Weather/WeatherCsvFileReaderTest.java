@@ -23,7 +23,7 @@ public class WeatherCsvFileReaderTest {
 
         ArrayList<WeatherData> testFileContent = new ArrayList<>();
         testFileContent.add(new WeatherData(1, 20, 15));
-        testFileContent.add(new WeatherData(2, 18, 14));
+        testFileContent.add(new WeatherData(2, 18, -14));
 
         assertEquals(testFileContent, reader.parseFile());
     }
