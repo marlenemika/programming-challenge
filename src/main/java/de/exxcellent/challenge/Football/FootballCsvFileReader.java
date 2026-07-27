@@ -45,7 +45,7 @@ public class FootballCsvFileReader extends CsvFileReader<FootballData> {
 
     /**
      * Checks if the line has exactly 8 values
-     * The first entry is the team name (including letter characters, underscores and spaces)
+     * The first entry is the team name (including letter characters, underscores, spaces and apostrophes)
      * The remaining 7 entries are all integers
      * The first 7 values are each followed by a comma to seperate them
      * The last value is not required to be followed by a comma
@@ -55,7 +55,16 @@ public class FootballCsvFileReader extends CsvFileReader<FootballData> {
      */
     @Override
     protected boolean isValidLine(String line) {
-        return line.matches("[A-Za-z_ ]+(?:,\\d+){7}");
+        String teamName = "[A-Za-z_ \\']+";
+        // Positive integer
+        String positiveNumber = "\\d+";
+
+        String remainingFields = "(?:," + positiveNumber + "){7}";
+
+        // Compose pattern according to csv file layout
+        String pattern = teamName + remainingFields;
+
+        return line.matches(pattern);
     }
     
 }
