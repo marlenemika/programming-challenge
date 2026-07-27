@@ -1,8 +1,10 @@
 package de.exxcellent.challenge.Weather;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import de.exxcellent.challenge.CustomFileReader.CsvFileReader.InvalidLineException;
 
 public class WeatherDataTest {
 
@@ -33,5 +35,19 @@ public class WeatherDataTest {
         WeatherData data = new WeatherData(1, 25, 10);
 
         assertEquals(15, data.getTempSpread());
+    }
+
+    @Test
+    void throwsInvalidLineExceptionForTooFewValues() {
+        String[] values = new String[]{"1", "20"};
+
+        assertThrows(InvalidLineException.class, () -> new WeatherData(values));
+    }
+
+    @Test
+    void throwsInvalidLineExceptionForNonNumericValue() {
+        String[] values = new String[]{"1", "abc", "15"};
+
+        assertThrows(InvalidLineException.class, () -> new WeatherData(values));
     }
 }

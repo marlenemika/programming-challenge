@@ -1,5 +1,7 @@
 package de.exxcellent.challenge.Football;
 
+import de.exxcellent.challenge.CustomFileReader.CsvFileReader.InvalidLineException;
+
 public class FootballData {
 
     private String team;
@@ -12,9 +14,13 @@ public class FootballData {
     }
 
     public FootballData(String[] contents) {
-        this.team = contents[0];
-        this.goalsScored = Integer.parseInt(contents[5]);
-        this.goalsAllowed = Integer.parseInt(contents[6]);
+        try {
+            this.team = contents[0];
+            this.goalsScored = Integer.parseInt(contents[5]);
+            this.goalsAllowed = Integer.parseInt(contents[6]);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new InvalidLineException("Invalid data in line: " + String.join(",", contents));
+        }
     }
 
     public String getTeam() {

@@ -1,5 +1,7 @@
 package de.exxcellent.challenge.Weather;
 
+import de.exxcellent.challenge.CustomFileReader.CsvFileReader.InvalidLineException;
+
 public class WeatherData {
 
     private int day, maxTemp, minTemp;
@@ -11,9 +13,14 @@ public class WeatherData {
     }
 
     public WeatherData(String[] contents) {
-        this.day = Integer.parseInt(contents[0]);
-        this.maxTemp = Integer.parseInt(contents[1]);
-        this.minTemp = Integer.parseInt(contents[2]);
+        try {
+            this.day = Integer.parseInt(contents[0]);
+            this.maxTemp = Integer.parseInt(contents[1]);
+            this.minTemp = Integer.parseInt(contents[2]);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new InvalidLineException("Invalid data in line: " + String.join(",", contents));
+        }
+
     }
 
     public int getDay() {

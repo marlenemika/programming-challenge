@@ -1,8 +1,10 @@
 package de.exxcellent.challenge.Football;
 
-import  static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import de.exxcellent.challenge.CustomFileReader.CsvFileReader.InvalidLineException;
 
 public class FootballDataTest {
 
@@ -33,5 +35,22 @@ public class FootballDataTest {
         FootballData data = new FootballData("Team", 14, 10);
 
         assertEquals(4, data.getGoalsDifference());
+    }
+
+
+    @Test
+    void throwsInvalidLineExceptionForTooFewValues() {
+        String[] values = new String[]{"TeamName", "1"};
+
+        assertThrows(InvalidLineException.class, () -> new FootballData(values));
+    }
+
+    @Test
+    void throwsInvalidLineExceptionForNonNumericGoals() {
+        String[] values = new String[]{
+            "TeamName", "other", "values", "not", "relevant", "abc", "3"
+        };
+
+        assertThrows(InvalidLineException.class, () -> new FootballData(values));
     }
 }
