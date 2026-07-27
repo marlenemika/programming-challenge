@@ -5,14 +5,14 @@ import java.util.*;
 
 public class WeatherDataAnalyzer {
 
-    public String filePath;
+    private final String FILE_PATH;
 
     public WeatherDataAnalyzer(String filePath) {
-        this.filePath = filePath;
+        this.FILE_PATH = filePath;
     }
 
     public void run() {
-        WeatherCsvFileReader reader = new WeatherCsvFileReader(filePath);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(FILE_PATH);
 
         ArrayList<WeatherData> parsedContent = reader.parseFile();
 

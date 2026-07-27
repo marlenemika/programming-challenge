@@ -7,16 +7,16 @@ import de.exxcellent.challenge.CustomFileReader.CustomFileReader;
 
 public abstract class CsvFileReader<T> implements CustomFileReader<T> {
 
-    public final String filePath;
+    private final String FILE_PATH;
 
     public CsvFileReader(String filePath) {
-        this.filePath = filePath;
+        this.FILE_PATH = filePath;
     }
 
     @Override
     public ArrayList<T> parseFile() {
         ArrayList<T> parsedContent = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (isValidLine(line)) 

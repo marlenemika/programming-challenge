@@ -4,14 +4,14 @@ import java.util.*;
 
 public class FootballDataAnalyzer {
 
-    public String filePath;
+    private final String FILE_PATH;
 
     public FootballDataAnalyzer(String filePath) {
-        this.filePath = filePath;
+        this.FILE_PATH = filePath;
     }
 
     public void run() {
-        FootballCsvFileReader reader = new FootballCsvFileReader(filePath);
+        FootballCsvFileReader reader = new FootballCsvFileReader(FILE_PATH);
 
         ArrayList<FootballData> parsedContent = reader.parseFile();
 
