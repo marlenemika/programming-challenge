@@ -1,0 +1,57 @@
+package de.exxcellent.challenge.Football;
+
+public class FootballData {
+
+    private String team;
+    private int goalsScored, goalsAllowed;
+
+    public FootballData(String team, int goalsScored, int goalsAllowed) {
+        this.team = team;
+        this.goalsScored = goalsScored;
+        this.goalsAllowed = goalsAllowed;
+    }
+
+    public FootballData(String[] contents) {
+        this.team = contents[0];
+        this.goalsScored = Integer.parseInt(contents[5]);
+        this.goalsAllowed = Integer.parseInt(contents[6]);
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public int getGoalsScored() {
+        return goalsScored;
+    }
+
+    public int getGoalsAllowed() {
+        return goalsAllowed;
+    }
+
+    public int getGoalsDifference() {
+        return Math.abs(goalsScored - goalsAllowed);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Team: %s, goalsScored: %d, goalsAllowed: %d", team, goalsScored, goalsAllowed);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        // Object is compared with itself
+        if (obj == this) return true;
+
+        // Comparing object is not instance of FootballData
+        if (!(obj instanceof FootballData)) return false;
+
+        // Parse comparing object to FootballData object in order to compare
+        FootballData other = (FootballData) obj;
+
+        return other.team.equals(this.team) &&
+                other.goalsScored == this.goalsScored &&
+                other.goalsAllowed == this.goalsAllowed;
+    }
+}
