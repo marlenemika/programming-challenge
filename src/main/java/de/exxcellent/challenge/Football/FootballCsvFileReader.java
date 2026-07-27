@@ -34,6 +34,7 @@ public class FootballCsvFileReader extends CsvFileReader<FootballData> {
      * @param line the line to be checked
      * @return true if the line contains all column names required, else false
      */
+    @Override
     protected boolean isValidHeader(String line) {
         boolean containsNeededArguments = true;
         String[] minArguments = new String[]{"Team", "Goals", "Goals Allowed"};
