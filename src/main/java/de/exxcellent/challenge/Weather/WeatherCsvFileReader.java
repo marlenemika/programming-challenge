@@ -1,13 +1,15 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.Weather;
 
 import java.io.*;
 import java.util.*;
 
-public class CsvFileReader {
+import de.exxcellent.challenge.InvalidLineException;
+
+public class WeatherCsvFileReader {
 
     public String filePath;
 
-    public CsvFileReader(String filePath) {
+    public WeatherCsvFileReader(String filePath) {
         this.filePath = filePath;
     }
 

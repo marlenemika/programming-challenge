@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.Weather;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,11 +6,11 @@ import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
-public class DataAnalyzerTest {
+public class WeatherDataAnalyzerTest {
 
     @Test
     void returnsWeatherWithSmallestTempSpread() {
-        DataAnalyzer analyzer = new DataAnalyzer("");
+        WeatherDataAnalyzer analyzer = new WeatherDataAnalyzer("");
 
         ArrayList<WeatherData> data = new ArrayList<>();
         data.add(new WeatherData(1, 15, 10));
@@ -24,7 +24,7 @@ public class DataAnalyzerTest {
 
     @Test
     void throwsExceptionForEmptyList() {
-        DataAnalyzer analyzer = new DataAnalyzer("");
+        WeatherDataAnalyzer analyzer = new WeatherDataAnalyzer("");
 
         ArrayList<WeatherData> emptyData = new ArrayList<>();
 

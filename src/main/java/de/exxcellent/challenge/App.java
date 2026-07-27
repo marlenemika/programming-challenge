@@ -1,5 +1,7 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.Weather.WeatherDataAnalyzer;
+
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
  * design. Read: create your own classes and packages as appropriate.
@@ -15,7 +17,7 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
-        DataAnalyzer dataAnalyzer = new DataAnalyzer(WEATHER_FILE_PATH);
+        WeatherDataAnalyzer dataAnalyzer = new WeatherDataAnalyzer(WEATHER_FILE_PATH);
         System.out.print("Day with smallest temperature spread: ");
         dataAnalyzer.run();
 

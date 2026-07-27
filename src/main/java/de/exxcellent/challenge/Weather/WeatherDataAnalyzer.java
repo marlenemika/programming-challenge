@@ -1,18 +1,18 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.Weather;
 
 import java.util.*;
 
 
-public class DataAnalyzer {
+public class WeatherDataAnalyzer {
 
     public String filePath;
 
-    public DataAnalyzer(String filePath) {
+    public WeatherDataAnalyzer(String filePath) {
         this.filePath = filePath;
     }
 
     public void run() {
-        CsvFileReader reader = new CsvFileReader(filePath);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(filePath);
 
         ArrayList<WeatherData> parsedContent = reader.parseFile();
 

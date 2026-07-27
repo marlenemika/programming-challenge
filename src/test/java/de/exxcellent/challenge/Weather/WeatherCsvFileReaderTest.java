@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.Weather;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-public class CsvFileReaderTest {
+import de.exxcellent.challenge.InvalidLineException;
+
+public class WeatherCsvFileReaderTest {
 
     final String SHARED_PATH = "src/test/java/de/exxcellent/challenge/resources/";
 
@@ -17,7 +19,7 @@ public class CsvFileReaderTest {
 
     @Test
     void readsFileContentCorrectly() {
-        CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(TEST_FILE_PATH);
 
         ArrayList<WeatherData> testFileContent = new ArrayList<>();
         testFileContent.add(new WeatherData(1, 20, 15));
@@ -28,21 +30,21 @@ public class CsvFileReaderTest {
 
     @Test
     void readsEmptyFile() {
-        CsvFileReader reader = new CsvFileReader(EMPTY_FILE_PATH);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(EMPTY_FILE_PATH);
 
         assertTrue(reader.parseFile().isEmpty());
     }
 
     @Test
     void returnsEmptyListForNonExistingFile() {
-        CsvFileReader reader = new CsvFileReader(NON_EXISTING_FILE_PATH);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(NON_EXISTING_FILE_PATH);
 
         assertTrue(reader.parseFile().isEmpty());
     }
 
     @Test
     void ignoresHeaderLine() {
-        CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(TEST_FILE_PATH);
 
         ArrayList<WeatherData> result = reader.parseFile();
 
@@ -51,7 +53,7 @@ public class CsvFileReaderTest {
 
     @Test
     void parseAllEntries() {
-        CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(TEST_FILE_PATH);
 
         ArrayList<WeatherData> result = reader.parseFile();
 
@@ -60,7 +62,7 @@ public class CsvFileReaderTest {
 
     @Test
     void throwsExceptionForInvalidLine() {
-        CsvFileReader reader = new CsvFileReader(INVALID_TEST_FILE_PATH);
+        WeatherCsvFileReader reader = new WeatherCsvFileReader(INVALID_TEST_FILE_PATH);
 
         InvalidLineException exception = assertThrows(
             InvalidLineException.class, () -> reader.parseFile()

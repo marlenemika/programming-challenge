@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.Weather;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
