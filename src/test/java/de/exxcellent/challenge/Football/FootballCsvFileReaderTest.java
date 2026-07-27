@@ -2,6 +2,7 @@ package de.exxcellent.challenge.Football;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -36,10 +37,14 @@ public class FootballCsvFileReaderTest {
     }
 
     @Test
-    void returnsEmptyListForNonExistingFile() {
+    void throwsExceptionForNonExistingFile() {
         FootballCsvFileReader reader = new FootballCsvFileReader(NON_EXISTING_FILE_PATH);
 
-        assertTrue(reader.parseFile().isEmpty());
+        UncheckedIOException exception = assertThrows(
+            UncheckedIOException.class, () -> reader.parseFile()
+        );
+
+        assertEquals("Failed to read file: " + NON_EXISTING_FILE_PATH, exception.getMessage());
     }
 
     @Test
