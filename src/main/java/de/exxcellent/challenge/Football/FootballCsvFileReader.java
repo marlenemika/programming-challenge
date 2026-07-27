@@ -10,6 +10,16 @@ import de.exxcellent.challenge.CustomFileReader.CsvFileReader.CsvFileReader;
  */
 public class FootballCsvFileReader extends CsvFileReader<FootballData> {
 
+    // RegEx fields for line validation
+    private static final String teamName = "[A-Za-z_ \\']+";
+    // Positive integer
+    private static final String positiveNumber = "\\d+";
+
+    private static final String remainingFields = "(?:," + positiveNumber + "){7}";
+
+    // Compose pattern according to csv file layout
+    private static final String pattern = teamName + remainingFields;
+
     public FootballCsvFileReader(String filePath) {
         super(filePath);
     }
@@ -56,15 +66,6 @@ public class FootballCsvFileReader extends CsvFileReader<FootballData> {
      */
     @Override
     protected boolean isValidLine(String line) {
-        String teamName = "[A-Za-z_ \\']+";
-        // Positive integer
-        String positiveNumber = "\\d+";
-
-        String remainingFields = "(?:," + positiveNumber + "){7}";
-
-        // Compose pattern according to csv file layout
-        String pattern = teamName + remainingFields;
-
         return line.matches(pattern);
     }
     

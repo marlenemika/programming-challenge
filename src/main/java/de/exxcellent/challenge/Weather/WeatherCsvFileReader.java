@@ -10,6 +10,22 @@ import de.exxcellent.challenge.CustomFileReader.CsvFileReader.CsvFileReader;
  */
 public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
 
+    // RegEx fields for line validation
+    private static final String day = "\\d+";
+    // Positive integer or decimal number
+    private static final String positiveNumber = "\\d+(?:\\.\\d+)?";
+    // Negative integer or decimal number
+    private static final String negativeNumber = "-" + positiveNumber;
+
+    // Temperatures may be below zero
+    private static final String temperatureFields = "(?:(?:" + positiveNumber + "|" + negativeNumber + "),){4}";
+
+    // Remaining fields are never below zero
+    private static final String remainingFields = "(?:" + positiveNumber + ",){8}";
+
+    // Compose pattern according to csv file layout
+    private static final String pattern = day + "," + temperatureFields + remainingFields + positiveNumber;
+
     public WeatherCsvFileReader(String filePath) {
         super(filePath);
     }
@@ -54,21 +70,6 @@ public class WeatherCsvFileReader extends CsvFileReader<WeatherData> {
      */
     @Override
     protected boolean isValidLine(String line) {
-        String day = "\\d+";
-        // Positive integer or decimal number
-        String positiveNumber = "\\d+(?:\\.\\d+)?";
-        // Negative integer or decimal number
-        String negativeNumber = "-" + positiveNumber;
-
-        // Temperatures may be below zero
-        String temperatureFields = "(?:(?:" + positiveNumber + "|" + negativeNumber + "),){4}";
-
-        // Remaining fields are never below zero
-        String remainingFields = "(?:" + positiveNumber + ",){8}";
-
-        // Compose pattern according to csv file layout
-        String pattern = day + "," + temperatureFields + remainingFields + positiveNumber;
-
         return line.matches(pattern);
     }
 
