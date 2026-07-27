@@ -46,8 +46,7 @@ public abstract class CsvFileReader<T> implements CustomFileReader<T> {
                     throw new InvalidLineException("Invalid line: " + line);
             }
         } catch (IOException e) {
-            System.err.println("An error occurred: " + e);
-            e.printStackTrace();
+            throw new UncheckedIOException("Failed to read file: " + FILE_PATH, e);
         }
         return parsedContent;
     }

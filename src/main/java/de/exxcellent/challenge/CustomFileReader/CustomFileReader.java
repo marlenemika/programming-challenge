@@ -16,8 +16,7 @@ public interface CustomFileReader<T> {
      * Reads the file passed and converts its content to a list of objects of type T
      * 
      * @return a list of parsed objects of type T
-     * @throws Exception if the file cannot be read or its content is invalid
      */
-    public ArrayList<T> parseFile() throws Exception;
+    public ArrayList<T> parseFile();
     
 }
