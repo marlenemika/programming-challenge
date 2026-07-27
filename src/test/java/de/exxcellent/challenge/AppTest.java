@@ -12,7 +12,26 @@ class AppTest {
             IllegalArgumentException.class, () -> App.main("--invalidArg")
         );
 
-        assertTrue(exception.getMessage().equals("Unknown argument: --invalidArg"));
+        assertEquals("Unknown argument: --invalidArg", exception.getMessage());
     }
 
+    @Test
+    void runsOnlyWeatherChallenge() {
+        assertDoesNotThrow(() -> App.main("--weather"));
+    }
+
+    @Test
+    void runsOnlyFootballChallenge() {
+        assertDoesNotThrow(() -> App.main("--football"));
+    }
+
+    @Test
+    void argumentIsCaseInsensitive() {
+        assertDoesNotThrow(() -> App.main("--WEATHER"));
+    }
+
+    @Test
+    void runsBothChallengesWithNoArguments() {
+        assertDoesNotThrow(() -> App.main());
+    }
 }
