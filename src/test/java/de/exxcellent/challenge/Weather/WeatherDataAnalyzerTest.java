@@ -31,4 +31,18 @@ public class WeatherDataAnalyzerTest {
         assertThrows(NoSuchElementException.class, () -> analyzer.calculateSmallestTempSpread(emptyData));
     }
 
+    @Test
+    void handlesMaxTempSmallerThanMinTemp() {
+        WeatherDataAnalyzer analyzer = new WeatherDataAnalyzer("");
+
+        ArrayList<WeatherData> data = new ArrayList<>();
+        data.add(new WeatherData(1, 15, 10));
+        data.add(new WeatherData(2, 4, 8));
+        data.add(new WeatherData(3, 5, 20));
+
+        WeatherData expected = new WeatherData(2, 4, 8);
+
+        assertEquals(expected, analyzer.calculateSmallestTempSpread(data));
+    }
+
 }
