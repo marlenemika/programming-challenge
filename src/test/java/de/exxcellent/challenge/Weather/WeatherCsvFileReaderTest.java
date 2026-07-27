@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import de.exxcellent.challenge.InvalidLineException;
+import de.exxcellent.challenge.CsvFileReader.InvalidLineException;
 
 public class WeatherCsvFileReaderTest {
 

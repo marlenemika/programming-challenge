@@ -3,7 +3,7 @@ package de.exxcellent.challenge.Weather;
 import java.io.*;
 import java.util.*;
 
-import de.exxcellent.challenge.InvalidLineException;
+import de.exxcellent.challenge.CsvFileReader.InvalidLineException;
 
 public class WeatherCsvFileReader {
 
