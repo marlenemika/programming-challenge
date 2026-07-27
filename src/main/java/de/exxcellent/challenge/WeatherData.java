@@ -28,6 +28,7 @@ public class WeatherData {
         return minTemp;
     }
 
+    @Override
     public String toString() {
         return String.format("Day: %d, maxTemp: %d, minTemp: %d", day, maxTemp, minTemp);
     }
