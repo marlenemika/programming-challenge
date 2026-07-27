@@ -1,31 +1,18 @@
 package de.exxcellent.challenge;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Example JUnit 5 test case.
- * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
- */
 class AppTest {
 
-    private String successLabel = "not successful";
-
-    @BeforeEach
-    void setUp() {
-        successLabel = "successful";
-    }
-
     @Test
-    void aPointlessTest() {
-        assertEquals("successful", successLabel, "My expectations were not met");
-    }
+    void throwsExceptionForInvalidArgument() {
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class, () -> App.main("--invalidArg")
+        );
 
-    @Test
-    void runFootball() {
-        App.main("--football", "football.csv");
+        assertTrue(exception.getMessage().equals("Unknown argument: --invalidArg"));
     }
 
 }
