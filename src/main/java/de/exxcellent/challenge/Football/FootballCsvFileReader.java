@@ -14,9 +14,9 @@ public class FootballCsvFileReader extends CsvFileReader<FootballData> {
         super(filePath);
     }
 
-
     /**
      * Splits line on commas and creates an FootballData object with the data in it
+     * Requirement: the column headers always have the exact same order for each weather.csv file
      * 
      * @param line the line containing the data which should be parsed into an object
      * @return FootballData object containing the information as stored in line
@@ -29,6 +29,7 @@ public class FootballCsvFileReader extends CsvFileReader<FootballData> {
 
     /**
      * Checks if the line contains the required column names to continue
+     * Can be extended if more data should be analyzed by adding the wanted arguments
      * 
      * @param line the line to be checked
      * @return true if the line contains all column names required, else false
