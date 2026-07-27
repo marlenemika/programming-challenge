@@ -3,24 +3,21 @@ package de.exxcellent.challenge;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 public class CsvFileReaderTest {
 
+    final String TEST_FILE_PATH = "src/test/java/de/exxcellent/challenge/resources/testFile.csv";
+
     @Test
     void readsFileContentCorrectly() {
-        String testFilePath = "src/test/java/de/exxcellent/challenge/resources/testFile.csv";
+        CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
 
-        CsvFileReader reader = new CsvFileReader(testFilePath);
-
-        List<String> testFileContent = List.of(
-            "car,hp,vmax",
-            "1,90,160",
-            "2,150,200",
-            "3,500,300"
-        );
+        ArrayList<WeatherData> testFileContent = new ArrayList<>();
+        testFileContent.add(new WeatherData(1, 15, 20));
+        testFileContent.add(new WeatherData(2, 14, 18));
 
         assertEquals(testFileContent, reader.parseFile());
     }
@@ -41,5 +38,23 @@ public class CsvFileReaderTest {
         CsvFileReader reader = new CsvFileReader(faultyFilePath);
 
         assertTrue(reader.parseFile().isEmpty());
+    }
+
+    @Test
+    void ignoresHeaderLine() {
+        CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
+
+        ArrayList<WeatherData> result = reader.parseFile();
+
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    void parseAllEntries() {
+        CsvFileReader reader = new CsvFileReader(TEST_FILE_PATH);
+
+        ArrayList<WeatherData> result = reader.parseFile();
+
+        assertEquals(2, result.size());
     }
 }

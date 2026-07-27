@@ -11,18 +11,24 @@ public class CsvFileReader {
         this.filePath = filePath;
     }
 
-    public List<String> parseFile() {
-        List<String> parsedContent = new ArrayList<>();
+    public ArrayList<WeatherData> parseFile() {
+        ArrayList<WeatherData> parsedContent = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                parsedContent.add(line);
+                if (line.contains("Day,MxT,MnT")) continue;
+                parsedContent.add(parseLineToWeatherData(line));
             }
         } catch (IOException e) {
             System.err.println("An error occurred:" + e);
             e.printStackTrace();
         }
         return parsedContent;
+    }
+
+    private WeatherData parseLineToWeatherData(String line) {
+        String[] lineContent = line.split(",|\\n");
+        return new WeatherData(lineContent);
     }
 
 }

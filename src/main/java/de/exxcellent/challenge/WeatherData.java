@@ -9,4 +9,31 @@ public class WeatherData {
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
     }
+
+    public WeatherData(String[] contents) {
+        this.day = Integer.parseInt(contents[0]);
+        this.maxTemp = Integer.parseInt(contents[1]);
+        this.minTemp = Integer.parseInt(contents[2]);
+    }
+
+    public String toString() {
+        return String.format("Day: %d, maxTemp: %d, minTemp: %d", day, maxTemp, minTemp);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        // Object is compared with itself
+        if (obj == this) return true;
+
+        // Comparing object is not instance of WeatherData
+        if (!(obj instanceof WeatherData)) return false;
+
+        // Parse comparing object to WeatherData object in order to compare its fields
+        WeatherData other = (WeatherData) obj;
+
+        return other.day == this.day && 
+                other.maxTemp == this.maxTemp &&
+                other.minTemp == this.minTemp;
+    }
 }

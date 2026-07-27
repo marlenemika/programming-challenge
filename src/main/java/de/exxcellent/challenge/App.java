@@ -19,9 +19,9 @@ public final class App {
     public static void main(String... args) {
 
         CsvFileReader reader = new CsvFileReader(WEATHER_FILE_PATH);
-        List<String> parsedContent = reader.parseFile();
-        for(String item : parsedContent) {
-            System.out.println(item);
+        List<WeatherData> parsedContent = reader.parseFile();
+        for(WeatherData item : parsedContent) {
+            System.out.println(item.toString());;
         }
 
         // Your preparation code …
